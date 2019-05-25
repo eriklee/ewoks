@@ -1,0 +1,8 @@
+{application, ewoks, [
+{description, "Erik's Way Of Knowing Stuff"},
+{vsn, "0.1.0"},
+{registered, []},
+{applications, [kernel, stdlib]},
+{mod, {ewoks_app, []}},
+{env, []}
+]}.
