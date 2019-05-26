@@ -28,6 +28,8 @@ log(LoggerPid, FromPid, Msg) ->
   gen_server:cast(LoggerPid, {log, FromPid, Msg}).
 
 init([LogPath, Filename]) ->
+  % We need to sync and close the file on exit
+  process_flag(trap_exit, true),
   Date = to_date_string(ewoks_utils:now_string()),
   State=#state{root_file_path=binary:list_to_bin(LogPath),
                file_name=binary:list_to_bin(Filename),
@@ -60,6 +62,7 @@ handle_info(Msg, State=#state{}) ->
 
 terminate(Reason, _State=#state{file=File}) ->
   file:sync(File),
+  file:close(File),
   Reason.
 
 maybe_rotate_file(Now, Now, State=#state{}) -> State;
