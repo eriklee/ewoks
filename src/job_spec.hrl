@@ -9,13 +9,19 @@
      | {daily, integer()} % hour to schedule
     }.
 
+-type status() ::
+    running
+  | stopped
+  | restarting.
+
 -record(job_config, {
     job_id :: string(),
     src_path :: string(),
     cmd :: string(),
     args :: [ string() | binary() ],
     env :: [{nonempty_string(), string()}],
-    schedule :: schedule()
+    schedule :: schedule(),
+    status :: status()
    }).
 
 -endif.

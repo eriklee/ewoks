@@ -15,8 +15,8 @@
         ]).
 
 -record(state, {
-          root_file_path :: iolist(),
-          file_name :: iolist(),
+          root_file_path :: binary(),
+          file_name :: binary(),
           date :: iolist(),
           file
          }).

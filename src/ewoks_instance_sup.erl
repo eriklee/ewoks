@@ -16,21 +16,23 @@
 
 test_oo() ->
   #job_config{
-                 job_id = "echo",
-                 src_path = "/usr/bin/",
-                 cmd = "echo",
-                 args = ["$PATH"],
-                 env = [],
-                 schedule = one_off}.
+    job_id = "echo",
+    src_path = "/usr/bin/",
+    cmd = "echo",
+    args = ["$PATH"],
+    env = [],
+    schedule = one_off,
+    status = restarting}.
 
 test_persist() ->
   #job_config{
-                 job_id = "ping",
-                 src_path = "/usr/bin/",
-                 cmd = "ping",
-                 args = ["localhost"],
-                 env = [],
-                 schedule = persistent}.
+    job_id = "ping",
+    src_path = "/usr/bin/",
+    cmd = "ping",
+    args = ["localhost"],
+    env = [],
+    schedule = persistent,
+    status = restarting}.
 
 start_link(Job=#job_config{}) ->
   supervisor:start_link(?MODULE, [Job]).
