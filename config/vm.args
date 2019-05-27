@@ -1,0 +1,4 @@
+-name ewoks@127.0.0.1
+
+% Only start two schedulers (probably still overkill)
+-S 2
