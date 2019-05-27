@@ -55,8 +55,8 @@ delete_job(JobId) ->
   gen_server:cast(?MODULE, {delete_job, JobId}).
 
 init([]) ->
-  Ets  = ets:new(?TABLE, [named, protected, {keypos, #job_config.job_id}]),
-  Ets2 = ets:new(?TABLE, [named, protected, {keypos, #job_instance.job_id}]),
+  Ets  = ets:new(?TABLE, [named_table, protected, {keypos, #job_config.job_id}]),
+  Ets2 = ets:new(?INSTANCE_TABLE, [named_table, protected, {keypos, #job_instance.job_id}]),
   State = #state{job_ets=Ets, job_instance_ets=Ets2},
   {ok, State}.
 
