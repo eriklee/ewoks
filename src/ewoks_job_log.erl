@@ -4,7 +4,7 @@
 
 -export([
          start_link/2,
-         log/3,
+         log/2,
 
          init/1,
          handle_call/3,
@@ -24,8 +24,8 @@
 start_link(LogPath, Filename) ->
   gen_server:start_link(?MODULE, [LogPath, Filename], []).
 
-log(LoggerPid, FromPid, Msg) ->
-  gen_server:cast(LoggerPid, {log, FromPid, Msg}).
+log(LoggerPid, Msg) ->
+  gen_server:cast(LoggerPid, {log, self(), Msg}).
 
 init([LogPath, Filename]) ->
   % We need to sync and close the file on exit
