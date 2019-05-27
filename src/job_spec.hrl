@@ -10,7 +10,7 @@
     }.
 
 -record(job_config, {
-    job_id :: integer(),
+    job_id :: string(),
     src_path :: string(),
     cmd :: string(),
     args :: [ string() | binary() ],
