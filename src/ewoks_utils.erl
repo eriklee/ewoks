@@ -33,14 +33,14 @@ kill_port_TERM(Port) ->
   case erlang:port_info(Port, os_pid) of
     undefined -> ok;
     {os_pid, OsPid} ->
-      os:cmd("kill ~p", [OsPid])
+      os:cmd(io_lib:format("kill ~p", [OsPid]))
   end.
 
 kill_port_KILL(Port) ->
   case erlang:port_info(Port, os_pid) of
     undefined -> ok;
     {os_pid, OsPid} ->
-      os:cmd("kill -9 ~p", [OsPid])
+      os:cmd(io_lib:format("kill -9 ~p", [OsPid]))
   end.
 
 now_string() ->
